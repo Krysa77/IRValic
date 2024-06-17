@@ -38,17 +38,17 @@ void setLED(int value) { // vraceni intenzity led
     switch (currentLED) { //podle ledky
         case 0:
             analogWrite(redLed, value);
-            Serial.print("Červená LED: ");
+            Serial.print("Cervena LED: ");
             Serial.println(value);
             break;
         case 1:
             analogWrite(greenLed, value);
-            Serial.print("Zelená LED: ");
+            Serial.print("Zelena LED: ");
             Serial.println(value);
             break;
         case 2:
             analogWrite(blueLed, value);
-            Serial.print("Modrá LED: ");
+            Serial.print("Modra LED: ");
             Serial.println(value);
             break;
     }
@@ -73,28 +73,28 @@ void loop() {
                 int intNum = stringNum.toInt(); // string to int
                 if (intNum >= 0 && intNum <= 255) { // rozsah kontrola
                     setLED(intNum);
-                    Serial.print("Nastavená hodnota: ");
+                    Serial.print("Nastavena hodnota: ");
                     Serial.println(intNum); // vypis cisla zas
-                    stringNum = ""; // ocitseni stringu
+                    stringNum = "";
                 } else {
                     Serial.println("Mimo rozsah");
-                    stringNum = ""; // vycisteni stringu
+                    stringNum = "";
                 }
             } else if (irData == 3125149440) { // cervena led
                 currentLED = 0;
-                Serial.println("Vybrána červená LED");
+                Serial.println("Vybrana cervena LED");
             } else if (irData == 3108437760) { // zelana led
                 currentLED = 1;
-                Serial.println("Vybrána zelená LED");
+                Serial.println("Vybrana zelena LED");
             } else if (irData == 3091726080) { // modra led
                 currentLED = 2;
-                Serial.println("Vybrána modrá LED");
+                Serial.println("Vybrana modra LED");
             } else { 
                 stringNum += receivedNum(irData);
                 Serial.println(stringNum); // vypis cisla
             }
         }
 
-        IrReceiver.resume(); // poveleni prijmlu dasiho kodu
+        IrReceiver.resume(); // poveleni prijmlu dasiho kodu / resume receiveru
     }
 }
